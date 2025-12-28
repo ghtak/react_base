@@ -18,7 +18,7 @@
 
 .nav {
   width: 15rem;  /* 왼쪽 사이드바 너비 고정 */
-  background-color: #e0e0e0;
+  background-color: $color-white-100;
   flex-shrink: 0; /* 너비가 줄어들지 않도록 설정 */
 }
 
