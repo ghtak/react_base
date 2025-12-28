@@ -1,14 +1,13 @@
 import { Outlet } from "@tanstack/react-router";
 import styles from "./styles/mainlayout.module.scss"
 import { Nav } from "../ui/nav";
+import Header from "../ui/header";
 
 export function MainLayout() {
   return (
     <div className={styles.container}>
       {/* <Header /> */}
-      <div className={styles.header}>
-
-      </div>
+      <Header />
 
       {/* <Nav /> */}
       <div className={styles.content}>
