@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as MainRouteRouteImport } from './routes/_main/route'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
+import { Route as MainScrollRouteImport } from './routes/_main/scroll'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -33,15 +34,22 @@ const MainIndexRoute = MainIndexRouteImport.update({
   path: '/',
   getParentRoute: () => MainRouteRoute,
 } as any)
+const MainScrollRoute = MainScrollRouteImport.update({
+  id: '/scroll',
+  path: '/scroll',
+  getParentRoute: () => MainRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/scroll': typeof MainScrollRoute
   '/': typeof MainIndexRoute
 }
 export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/scroll': typeof MainScrollRoute
   '/': typeof MainIndexRoute
 }
 export interface FileRoutesById {
@@ -49,14 +57,15 @@ export interface FileRoutesById {
   '/_main': typeof MainRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/_main/scroll': typeof MainScrollRoute
   '/_main/': typeof MainIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/about' | '/login' | '/'
+  fullPaths: '/about' | '/login' | '/scroll' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/login' | '/'
-  id: '__root__' | '/_main' | '/about' | '/login' | '/_main/'
+  to: '/about' | '/login' | '/scroll' | '/'
+  id: '__root__' | '/_main' | '/about' | '/login' | '/_main/scroll' | '/_main/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,14 +104,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainIndexRouteImport
       parentRoute: typeof MainRouteRoute
     }
+    '/_main/scroll': {
+      id: '/_main/scroll'
+      path: '/scroll'
+      fullPath: '/scroll'
+      preLoaderRoute: typeof MainScrollRouteImport
+      parentRoute: typeof MainRouteRoute
+    }
   }
 }
 
 interface MainRouteRouteChildren {
+  MainScrollRoute: typeof MainScrollRoute
   MainIndexRoute: typeof MainIndexRoute
 }
 
 const MainRouteRouteChildren: MainRouteRouteChildren = {
+  MainScrollRoute: MainScrollRoute,
   MainIndexRoute: MainIndexRoute,
 }
 

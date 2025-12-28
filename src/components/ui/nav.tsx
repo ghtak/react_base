@@ -9,6 +9,10 @@ export function Nav() {
       path: "/",
     },
     {
+      name: "Scroll",
+      path: "/scroll",
+    },
+    {
       name: "About",
       path: "/about",
     },
@@ -16,7 +20,9 @@ export function Nav() {
 
   const menus = links.map((link) => (
     <li>
-      <Link key={link.path} to={link.path}>{link.name}</Link>
+      <Link key={link.path} to={link.path}>
+        {link.name}
+      </Link>
     </li>
   ));
 

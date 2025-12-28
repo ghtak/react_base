@@ -1,7 +1,8 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* 화면 전체 높이 사용 */
+  height: 100vh; /* 뷰포트 높이로 고정 */
+  overflow: hidden; /* 전체 화면 스크롤 방지 */
 }
 
 .header {
@@ -14,6 +15,7 @@
 .content {
   display: flex; /* 가로 배치 핵심 */
   flex: 1;       /* 남은 세로 공간 모두 차지 */
+  overflow: hidden; /* 자식 요소(main) 스크롤을 위해 넘침 숨김 */
 }
 
 .nav {
@@ -25,6 +27,7 @@
 .main {
   flex: 1;       /* 남은 가로 공간 모두 차지 */
   padding: 1rem;
+  overflow-y: auto; /* 메인 영역만 세로 스크롤 */
 }
 
 .footer {
