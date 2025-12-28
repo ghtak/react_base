@@ -1,0 +1,13 @@
+import styles from './LoginPage.module.scss';
+
+export function LoginPage() {
+  return (
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h1>로그인</h1>
+        <p>서비스 이용을 위해 로그인해주세요.</p>
+        {/* 추후 LoginForm 컴포넌트 추가 */}
+      </div>
+    </div>
+  );
+}

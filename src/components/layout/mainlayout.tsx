@@ -1,5 +1,5 @@
 import { Outlet } from "@tanstack/react-router";
-import styles from "./styles/mainlayout.module.scss"
+import styles from "./mainlayout.module.scss"
 import { Nav } from "@components/ui/nav";
 import { Header } from "@components/ui/header";
 

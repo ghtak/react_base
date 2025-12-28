@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./styles/nav.module.scss";
+import styles from "./nav.module.scss";
 import { Link } from "@tanstack/react-router";
 
 export function Nav() {
