@@ -5,8 +5,10 @@
 }
 
 .header {
-  height: 3.75rem; /* 60px -> rem 변환 (접근성 고려) */
-  background-color: $color-white-200
+  height: 20rem; /* 60px -> rem 변환 (접근성 고려) */
+  background-image: url('src/assets/images/image-intro.jpg');
+  background-size: cover;
+  background-position: center;;
 }
 
 .content {
