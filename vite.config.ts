@@ -25,6 +25,8 @@ export default defineConfig({
     preprocessorOptions : {
       scss : {
         additionalData : `
+          // 주의: 여기에는 변수($)나 믹스인(@mixin)만 포함된 파일을 넣어야 합니다.
+          // 실제 CSS 스타일이 포함된 파일을 넣으면 모든 SCSS 파일마다 코드가 중복되어 Code Bloat이 발생합니다.
           @use "@assets/styles/color.scss" as *;
         `
       }
