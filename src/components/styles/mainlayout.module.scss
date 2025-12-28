@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 화면 전체 높이 사용 */
+}
+
+.header {
+  height: 3.75rem; /* 60px -> rem 변환 (접근성 고려) */
+  background-color: #f0f0f0;
+}
+
+.content {
+  display: flex; /* 가로 배치 핵심 */
+  flex: 1;       /* 남은 세로 공간 모두 차지 */
+}
+
+.nav {
+  width: 15rem;  /* 왼쪽 사이드바 너비 고정 */
+  background-color: #e0e0e0;
+  flex-shrink: 0; /* 너비가 줄어들지 않도록 설정 */
+}
+
+.main {
+  flex: 1;       /* 남은 가로 공간 모두 차지 */
+  padding: 1rem;
+}
+
+.footer {
+  height: 3.125rem; /* 50px -> rem 변환 */
+  background-color: #f0f0f0;
+}
