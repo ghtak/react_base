@@ -1,7 +1,7 @@
 import { Outlet } from "@tanstack/react-router";
 import styles from "./styles/mainlayout.module.scss"
-import { Nav } from "../ui/nav";
-import Header from "../ui/header";
+import { Nav } from "@components/ui/nav";
+import { Header } from "@components/ui/header";
 
 export function MainLayout() {
   return (
