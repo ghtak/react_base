@@ -29,5 +29,20 @@ export default defineConfig({
         `
       }
     }
+  },
+
+  server: {
+    port: 3000,
+    // 브라우저 자동 열기
+    open: true,
+    proxy: {
+      // '/api' : {
+      //   target: 'http://localhost:3000',
+      //   changeOrigin: true,
+      //   secure: false,
+      //   // /api/users -> /users
+      //   rewrite: (path) => path.replace(/^\/api/, '')
+      // }
+    }
   }
 })
