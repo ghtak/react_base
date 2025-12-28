@@ -16,7 +16,7 @@ export function Nav() {
 
   const menus = links.map((link) => (
     <li>
-      <Link to={link.path}>{link.name}</Link>
+      <Link key={link.path} to={link.path}>{link.name}</Link>
     </li>
   ));
 
