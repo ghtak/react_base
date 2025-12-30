@@ -8,131 +8,131 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root';
-import { Route as LoginRouteImport } from './routes/login';
-import { Route as AboutRouteImport } from './routes/about';
-import { Route as MainRouteRouteImport } from './routes/_main/route';
-import { Route as MainIndexRouteImport } from './routes/_main/index';
-import { Route as MainScrollRouteImport } from './routes/_main/scroll';
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as MainRouteRouteImport } from './routes/_main/route'
+import { Route as MainIndexRouteImport } from './routes/_main/index'
+import { Route as MainScrollRouteImport } from './routes/_main/scroll'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const MainRouteRoute = MainRouteRouteImport.update({
   id: '/_main',
   getParentRoute: () => rootRouteImport,
-} as any);
+} as any)
 const MainIndexRoute = MainIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => MainRouteRoute,
-} as any);
+} as any)
 const MainScrollRoute = MainScrollRouteImport.update({
   id: '/scroll',
   path: '/scroll',
   getParentRoute: () => MainRouteRoute,
-} as any);
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/about': typeof AboutRoute;
-  '/login': typeof LoginRoute;
-  '/scroll': typeof MainScrollRoute;
-  '/': typeof MainIndexRoute;
+  '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/scroll': typeof MainScrollRoute
+  '/': typeof MainIndexRoute
 }
 export interface FileRoutesByTo {
-  '/about': typeof AboutRoute;
-  '/login': typeof LoginRoute;
-  '/scroll': typeof MainScrollRoute;
-  '/': typeof MainIndexRoute;
+  '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/scroll': typeof MainScrollRoute
+  '/': typeof MainIndexRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport;
-  '/_main': typeof MainRouteRouteWithChildren;
-  '/about': typeof AboutRoute;
-  '/login': typeof LoginRoute;
-  '/_main/scroll': typeof MainScrollRoute;
-  '/_main/': typeof MainIndexRoute;
+  __root__: typeof rootRouteImport
+  '/_main': typeof MainRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/_main/scroll': typeof MainScrollRoute
+  '/_main/': typeof MainIndexRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/about' | '/login' | '/scroll' | '/';
-  fileRoutesByTo: FileRoutesByTo;
-  to: '/about' | '/login' | '/scroll' | '/';
-  id: '__root__' | '/_main' | '/about' | '/login' | '/_main/scroll' | '/_main/';
-  fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/about' | '/login' | '/scroll' | '/'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/about' | '/login' | '/scroll' | '/'
+  id: '__root__' | '/_main' | '/about' | '/login' | '/_main/scroll' | '/_main/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  MainRouteRoute: typeof MainRouteRouteWithChildren;
-  AboutRoute: typeof AboutRoute;
-  LoginRoute: typeof LoginRoute;
+  MainRouteRoute: typeof MainRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/login': {
-      id: '/login';
-      path: '/login';
-      fullPath: '/login';
-      preLoaderRoute: typeof LoginRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
-      id: '/about';
-      path: '/about';
-      fullPath: '/about';
-      preLoaderRoute: typeof AboutRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_main': {
-      id: '/_main';
-      path: '';
-      fullPath: '';
-      preLoaderRoute: typeof MainRouteRouteImport;
-      parentRoute: typeof rootRouteImport;
-    };
+      id: '/_main'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof MainRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_main/': {
-      id: '/_main/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof MainIndexRouteImport;
-      parentRoute: typeof MainRouteRoute;
-    };
+      id: '/_main/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof MainIndexRouteImport
+      parentRoute: typeof MainRouteRoute
+    }
     '/_main/scroll': {
-      id: '/_main/scroll';
-      path: '/scroll';
-      fullPath: '/scroll';
-      preLoaderRoute: typeof MainScrollRouteImport;
-      parentRoute: typeof MainRouteRoute;
-    };
+      id: '/_main/scroll'
+      path: '/scroll'
+      fullPath: '/scroll'
+      preLoaderRoute: typeof MainScrollRouteImport
+      parentRoute: typeof MainRouteRoute
+    }
   }
 }
 
 interface MainRouteRouteChildren {
-  MainScrollRoute: typeof MainScrollRoute;
-  MainIndexRoute: typeof MainIndexRoute;
+  MainScrollRoute: typeof MainScrollRoute
+  MainIndexRoute: typeof MainIndexRoute
 }
 
 const MainRouteRouteChildren: MainRouteRouteChildren = {
   MainScrollRoute: MainScrollRoute,
   MainIndexRoute: MainIndexRoute,
-};
+}
 
 const MainRouteRouteWithChildren = MainRouteRoute._addFileChildren(
   MainRouteRouteChildren,
-);
+)
 
 const rootRouteChildren: RootRouteChildren = {
   MainRouteRoute: MainRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   LoginRoute: LoginRoute,
-};
+}
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
