@@ -1,13 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import styles from './LoginPage.module.scss';
 
-export function LoginPage() {
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
+interface FormData {
+  userId: string;
+  password: string;
+}
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log('로그인 시도:', userId, password);
+export function LoginPage() {
+  const { register, handleSubmit } = useForm<FormData>();
+
+  const onSubmit = (data: FormData) => {
+    console.log('로그인 시도:', data.userId, data.password);
   };
 
   useEffect(() => {
@@ -16,15 +20,14 @@ export function LoginPage() {
 
   return (
     <div className={styles.container}>
-      <form className={styles.card} onSubmit={handleSubmit}>
+      <form className={styles.card} onSubmit={handleSubmit(onSubmit)}>
         <h1>로그인</h1>
         <p>서비스 이용을 위해 로그인해주세요.</p>
         <div className={styles.inputGroup}>
           <label>아이디</label>
           <input
             type="text"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
+            {...register('userId')}
             placeholder="아이디"
           ></input>
         </div>
@@ -32,8 +35,7 @@ export function LoginPage() {
           <label>비밀번호</label>
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            {...register('password')}
             placeholder="비밀번호"
           ></input>
         </div>
