@@ -1,25 +1,49 @@
+import { useEffect, useState } from 'react';
 import styles from './LoginPage.module.scss';
 
 export function LoginPage() {
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log('로그인 시도:', userId, password);
+  };
+
+  useEffect(() => {
+    console.log('Load');
+  }, []);
+
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
+      <form className={styles.card} onSubmit={handleSubmit}>
         <h1>로그인</h1>
         <p>서비스 이용을 위해 로그인해주세요.</p>
-        {/* 추후 LoginForm 컴포넌트 추가 */}
         <div className={styles.inputGroup}>
           <label>아이디</label>
-          <input type="text"></input>
+          <input
+            type="text"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+            placeholder="아이디"
+          ></input>
         </div>
         <div className={styles.inputGroup}>
           <label>비밀번호</label>
-          <input type="password"></input>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="비밀번호"
+          ></input>
         </div>
         <hr />
         <div>
-          <button className={styles.button}>로그인</button>
+          <button type="submit" className={styles.button}>
+            로그인
+          </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
