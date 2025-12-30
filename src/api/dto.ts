@@ -8,5 +8,5 @@ export interface UserDto {
   userId: string;
   userName: string;
   email: string;
-  roles: "ADMIN" | "USER";
+  roles: 'ADMIN' | 'USER';
 }

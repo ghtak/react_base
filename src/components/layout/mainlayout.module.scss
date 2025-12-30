@@ -7,18 +7,18 @@
 
 .content {
   display: flex; /* 가로 배치 핵심 */
-  flex: 1;       /* 남은 세로 공간 모두 차지 */
+  flex: 1; /* 남은 세로 공간 모두 차지 */
   overflow: hidden; /* 자식 요소(main) 스크롤을 위해 넘침 숨김 */
 }
 
 .nav {
-  width: 15rem;  /* 왼쪽 사이드바 너비 고정 */
+  width: 15rem; /* 왼쪽 사이드바 너비 고정 */
   background-color: $color-white-100;
   flex-shrink: 0; /* 너비가 줄어들지 않도록 설정 */
 }
 
 .main {
-  flex: 1;       /* 남은 가로 공간 모두 차지 */
+  flex: 1; /* 남은 가로 공간 모두 차지 */
   padding: 1rem;
   //padding-top: 0; /* 스크롤 시 상단 여백이 사라지지 않도록 패딩 제거 */
   //margin-top: 1rem; /* 대신 마진을 사용하여 헤더와의 간격 고정 */

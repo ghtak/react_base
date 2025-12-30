@@ -7,15 +7,18 @@
 ## 1. Error Boundary (에러 바운더리)
 
 ### 개념
+
 리액트 컴포넌트 트리 하위에서 발생하는 자바스크립트 에러를 포착하고, 깨진 컴포넌트 트리 대신 **대체 UI(Fallback UI)**를 보여주는 컴포넌트입니다.
 
 > **주의**: 에러 바운더리는 다음 에러는 포착하지 못합니다.
+>
 > - 이벤트 핸들러 (`onClick` 등)
 > - 비동기 코드 (`setTimeout`, `requestAnimationFrame` 등)
 > - 서버 사이드 렌더링 (SSR)
 > - 에러 바운더리 자체에서 발생한 에러
 
 ### 구현 방법 1: 클래스 컴포넌트 (기본)
+
 생명주기 메서드인 `getDerivedStateFromError` 와 `componentDidCatch`를 사용해야 하므로 **반드시 클래스 컴포넌트**로 작성해야 합니다.
 
 ```javascript
@@ -32,7 +35,7 @@ class ErrorBoundary extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     // 에러 로깅 서비스(Sentry 등)에 에러 기록
-    console.error("Uncaught error:", error, errorInfo);
+    console.error('Uncaught error:', error, errorInfo);
   }
 
   render() {
@@ -46,10 +49,11 @@ class ErrorBoundary extends React.Component {
 // 사용
 <ErrorBoundary fallback={<ErrorPage />}>
   <MyWidget />
-</ErrorBoundary>
+</ErrorBoundary>;
 ```
 
 ### 구현 방법 2: react-error-boundary 라이브러리 (권장)
+
 함수형 컴포넌트에서도 훅(Hook) 기반으로 쉽게 사용할 수 있고, 에러 리셋(재시도) 기능이 강력하여 실무에서 많이 사용됩니다.
 
 ```javascript
@@ -72,7 +76,7 @@ function Fallback({ error, resetErrorBoundary }) {
   }}
 >
   <MyComponent />
-</ErrorBoundary>
+</ErrorBoundary>;
 ```
 
 ---
@@ -80,6 +84,7 @@ function Fallback({ error, resetErrorBoundary }) {
 ## 2. Global Modal (전역 모달) 관리
 
 ### 왜 전역으로 관리해야 할까?
+
 1.  **Z-Index 지옥 탈출**: 모달이 깊은 컴포넌트 트리에 있으면 부모의 `overflow: hidden`이나 `z-index` 영향을 받아 잘리거나 뒤에 가려질 수 있습니다.
 2.  **Props Drilling 방지**: 모달을 열기 위한 `isOpen`, `onClose` 함수를 여러 단계 거쳐 전달할 필요가 없습니다.
 3.  **DOM 구조 깔끔함**: `React Portal`을 사용해 `body` 바로 아래에 렌더링하므로 시맨틱 구조가 유지됩니다.
@@ -87,6 +92,7 @@ function Fallback({ error, resetErrorBoundary }) {
 ### 구현 패턴: Context API 또는 상태 관리 라이브러리 (Zustand/Recoil)
 
 #### 1. 모달 스토어 (Zustand 예시)
+
 어디서든 모달을 열 수 있는 전역 상태를 만듭니다.
 
 ```javascript
@@ -100,6 +106,7 @@ const useModalStore = create((set) => ({
 ```
 
 #### 2. 전역 모달 렌더러 (GlobalModalRenderer)
+
 앱의 최상위(`App.tsx` 또는 `Layout`)에 배치하여, 스토어에 모달이 있으면 렌더링합니다. 이때 **Portal**을 사용합니다.
 
 ```javascript
@@ -112,16 +119,17 @@ const GlobalModalRenderer = () => {
 
   return createPortal(
     <div className="modal-overlay" onClick={closeModal}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         {modal}
       </div>
     </div>,
-    document.getElementById('modal-root') || document.body
+    document.getElementById('modal-root') || document.body,
   );
 };
 ```
 
 #### 3. 사용 예시
+
 어떤 컴포넌트에서든 훅을 불러와 모달을 띄울 수 있습니다.
 
 ```javascript
@@ -139,5 +147,6 @@ const MyComponent = () => {
 ---
 
 ## 요약
+
 1.  **Error Boundary**는 앱이 하얀 화면으로 죽는 것을 방지하는 안전벨트입니다. 주요 섹션(GNB, 사이드바, 메인 콘텐츠)마다 감싸주면 좋습니다.
 2.  **Global Modal**은 `Portal`과 `전역 상태`를 결합하여, UI 계층 문제와 데이터 전달 문제를 동시에 해결하는 패턴입니다.

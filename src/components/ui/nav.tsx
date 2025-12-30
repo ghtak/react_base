@@ -1,20 +1,20 @@
-import { useState } from "react";
-import styles from "./nav.module.scss";
-import { Link } from "@tanstack/react-router";
+import { useState } from 'react';
+import styles from './nav.module.scss';
+import { Link } from '@tanstack/react-router';
 
 export function Nav() {
   const [links] = useState([
     {
-      name: "Home",
-      path: "/",
+      name: 'Home',
+      path: '/',
     },
     {
-      name: "Scroll",
-      path: "/scroll",
+      name: 'Scroll',
+      path: '/scroll',
     },
     {
-      name: "About",
-      path: "/about",
+      name: 'About',
+      path: '/about',
     },
   ]);
 
