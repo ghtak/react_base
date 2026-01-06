@@ -1,0 +1,22 @@
+.searchForm {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+
+  .fieldGroup {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .searchButton {
+    min-width: 100px;
+  }
+}

@@ -16,6 +16,10 @@ export function Nav() {
       name: 'About',
       path: '/about',
     },
+    {
+      name: 'Sample',
+      path: '/sample',
+    },
   ]);
 
   const menus = links.map((link) => (

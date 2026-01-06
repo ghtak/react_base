@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as MainRouteRouteImport } from './routes/_main/route'
 import { Route as MainIndexRouteImport } from './routes/_main/index'
 import { Route as MainScrollRouteImport } from './routes/_main/scroll'
+import { Route as MainSampleRouteImport } from './routes/_main/sample'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -39,16 +40,23 @@ const MainScrollRoute = MainScrollRouteImport.update({
   path: '/scroll',
   getParentRoute: () => MainRouteRoute,
 } as any)
+const MainSampleRoute = MainSampleRouteImport.update({
+  id: '/sample',
+  path: '/sample',
+  getParentRoute: () => MainRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/sample': typeof MainSampleRoute
   '/scroll': typeof MainScrollRoute
   '/': typeof MainIndexRoute
 }
 export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/sample': typeof MainSampleRoute
   '/scroll': typeof MainScrollRoute
   '/': typeof MainIndexRoute
 }
@@ -57,15 +65,23 @@ export interface FileRoutesById {
   '/_main': typeof MainRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/_main/sample': typeof MainSampleRoute
   '/_main/scroll': typeof MainScrollRoute
   '/_main/': typeof MainIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/about' | '/login' | '/scroll' | '/'
+  fullPaths: '/about' | '/login' | '/sample' | '/scroll' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/login' | '/scroll' | '/'
-  id: '__root__' | '/_main' | '/about' | '/login' | '/_main/scroll' | '/_main/'
+  to: '/about' | '/login' | '/sample' | '/scroll' | '/'
+  id:
+    | '__root__'
+    | '/_main'
+    | '/about'
+    | '/login'
+    | '/_main/sample'
+    | '/_main/scroll'
+    | '/_main/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -111,15 +127,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MainScrollRouteImport
       parentRoute: typeof MainRouteRoute
     }
+    '/_main/sample': {
+      id: '/_main/sample'
+      path: '/sample'
+      fullPath: '/sample'
+      preLoaderRoute: typeof MainSampleRouteImport
+      parentRoute: typeof MainRouteRoute
+    }
   }
 }
 
 interface MainRouteRouteChildren {
+  MainSampleRoute: typeof MainSampleRoute
   MainScrollRoute: typeof MainScrollRoute
   MainIndexRoute: typeof MainIndexRoute
 }
 
 const MainRouteRouteChildren: MainRouteRouteChildren = {
+  MainSampleRoute: MainSampleRoute,
   MainScrollRoute: MainScrollRoute,
   MainIndexRoute: MainIndexRoute,
 }
